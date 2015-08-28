@@ -67,7 +67,7 @@ class ClashChecker(object):
         course_one_start, course_one_end = course_one
         course_two_start, course_two_end = course_two
 
-        return ((course_one_start < course_two_end) and (course_one_end > course_two_start))
+        return (course_one_start < course_two_end) and (course_one_end > course_two_start)
 
     def load_courses(self, courses_dict):
         courses = {}
