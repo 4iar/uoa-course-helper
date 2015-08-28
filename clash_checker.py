@@ -16,7 +16,6 @@ class Course(object):
         where every tuple represents a lecture and the two datetimes in the tuple represent
         the start and end of the lecture respectively.
         """
-
         converted_timetable = []
 
         for lecture in json_timetable:
@@ -67,12 +66,12 @@ class ClashChecker(object):
                         clashes += 1
         return clashes
 
-    def date_intersect(self, courseA, courseB):
+    def date_intersect(self, course_one, course_two):
         """Returns true if dates intersect and false if they do not intersect"""
-        startA, endA = courseA
-        startB, endB = courseB
+        course_one_start, course_one_end = course_one
+        course_two_start, course_two_end = course_two
 
-        return ((startA < endB) and (endA > startB))
+        return ((course_one_start < course_two_end) and (course_one_end > course_two_start))
 
     def load_courses(self, courses_dict):
         courses = {}
