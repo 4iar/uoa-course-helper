@@ -24,20 +24,16 @@ class Course(object):
 
         return converted_timetable
 
+class CourseDatabase(dict):
 
-class CourseDatabase(object):
-
-    def __init__(self, course_dict):
-        self.course_codes = course_dict.keys()
-
-
-        for course_data in course_dict:
-            self.courses.append(Course(course_data))
+    def __init__(self, courses_dict):
+        for k, v in courses_dict.items():
+            self[k] = Course(v)
 
 class ClashChecker(object):
 
     def __init__(self, courses_dict):
-        self.courses = self.load_courses(courses_dict)
+        self.courses = CourseDatabase(courses_dict)
 
     def get_possible_courses(self, courses):
         """Return a dict of of all courses in the library and the number of clashes with the pre selected list of courses"""
