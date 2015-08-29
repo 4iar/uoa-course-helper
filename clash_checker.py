@@ -8,6 +8,13 @@ class Course(object):
         self.half = course_data['half']
         self.lecture_timetable = self.convert_json_timetable_to_datetime(course_data['timetable_json_lectures_only'])
         self.code = course_data['code']
+        self.course_url = course_data['course_url']
+        self.level = course_data['level']
+        self.title = course_data['title'].split(':')[1]
+        self.category = course_data['category']
+        self.credits = course_data['credits']
+        self.clashes = None
+
 
     def convert_json_timetable_to_datetime(self, json_timetable):
         """Convert a json formatted timetable to a datetime formatted timetable
