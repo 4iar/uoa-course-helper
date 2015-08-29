@@ -47,15 +47,23 @@ class ClashChecker(object):
 
         courses_selected = []
         possible_courses = {}
+        course_half = []
 
         for c in courses:
             try:
-                courses_selected.append(self.courses[c])
+                courses_selected.append(self.courses[c.upper()])
+                course_half.append(self.courses[c.upper()].half)
             except KeyError:
                 raise
+        if len(set(course_half)) > 1:
+            raise ValueError("The courses you have selected are not in the same semester")
+        else:
+            course_half = course_half[0]
 
         for c in self.courses.values():
-            possible_courses[c.code] = self.count_clashes(c, courses_selected)
+            if c.half == course_half:
+                c.clashes = self.count_clashes(c, courses_selected)
+                possible_courses[c.code] = c
 
         return possible_courses
 
