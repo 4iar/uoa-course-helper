@@ -13,5 +13,3 @@ c = ClashChecker(course_dict)
 possible_courses = c.get_possible_courses(sys.argv[1:])
 
 html_report.write_report(sys.argv[1:], possible_courses)
-
-
