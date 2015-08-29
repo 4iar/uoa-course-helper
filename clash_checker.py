@@ -31,11 +31,13 @@ class Course(object):
 
         return converted_timetable
 
+
 class CourseDatabase(dict):
 
     def __init__(self, courses_dict):
         for k, v in courses_dict.items():
             self[k] = Course(v)
+
 
 class ClashChecker(object):
 
