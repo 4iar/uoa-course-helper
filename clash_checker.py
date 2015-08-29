@@ -62,7 +62,11 @@ class ClashChecker(object):
         else:
             course_half = course_half[0]
 
-        for c in self.courses.values():
+        courses_to_search = {k: v for k, v in self.courses.items()
+                             if v.half == course_half
+                             and k not in (c.code for c in courses_selected)}
+
+        for c in courses_to_search.values():
             if c.half == course_half:
                 c.clashes = self.count_clashes(c, courses_selected)
                 possible_courses[c.code] = c
