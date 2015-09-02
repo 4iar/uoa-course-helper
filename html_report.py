@@ -1,6 +1,9 @@
+import os
 
 
 HTML_TEMPLATE = "template.html"
+REPORT_SUBDIRECTORY = "generated_reports"
+
 
 
 def write_report(selected_courses, possible_courses):
@@ -25,8 +28,14 @@ def write_report(selected_courses, possible_courses):
         else:
             outfile.append(l)
 
+
+    try:
+        os.mkdir(REPORT_SUBDIRECTORY)
+    except FileExistsError:
+        pass
+
     outfile_name = '{}.html'.format('_'.join(selected_courses).upper())
+    outfile_name = os.path.join(os.path.dirname(__file__), REPORT_SUBDIRECTORY, outfile_name)
     outfile_fp = open(outfile_name, 'w')
     outfile_fp.writelines(outfile)
     print("Wrote results to {}".format(outfile_name))
-
