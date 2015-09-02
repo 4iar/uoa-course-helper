@@ -1,4 +1,7 @@
 # Created by https://www.gitignore.io/api/python,linux,windows,vim,emacs,pycharm,virtualenv,osx
+#
+
+generated_reports/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
